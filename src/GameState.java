@@ -8,7 +8,7 @@ public class GameState {
     public static void mainMenu() {
         System.out.println("Let's Play Roshambo!");
         System.out.println("= = = = = = = = = = =");
-        System.out.println("Select a Game Mode:");
+        System.out.println("Select Game Mode:");
         System.out.println("1. Player vs. Computer");
         System.out.println("2. Player vs. Player");
         System.out.println("3. Game History");
@@ -20,30 +20,38 @@ public class GameState {
     }
 
     public void gamePrompt() {
-        System.out.println("\n1 = rock, 2 = paper, 3 = scissors, q = quit");
+        System.out.println("\nMake your move!\n1 = rock, 2 = paper, 3 = scissors, q = quit");
     }
 
     public void onePlayer (Human p1, Computer p2) {
-        gamePrompt();
-        p1.getChoice();
-        p2.getChoice();
+        while (true) {
+            gamePrompt();
+            int c1 = p1.getChoice();
+            int c2 = p2.getChoice();
+            p1.getResult(c1,c2);
+        }
     }
 
     public void twoPlayer(Human p1, Human p2) {
-        gamePrompt();
-        p1.getChoice();
-        p2.getChoice();
+        while (true) {
+            gamePrompt();
+            int c1 = p1.getChoice();
+            System.out.println("\n\n");
+            gamePrompt();
+            int c2 = p2.getChoice();
+            p1.getResult(c1,c2);
+        }
     }
 
-    public Object createP2 (Optional<Integer> mode, Human p1){
+    public Object createGame(Optional<Integer> mode, Human p1){
         Object player = null;
         if (Objects.equals(mode, Optional.of(1))) {
-            System.out.println("Starting 1 player game");
+            System.out.println("Starting 1 player game...");
             player2 = new Computer();
             onePlayer(p1, (Computer) player2);
             player = player2;
         } else if (Objects.equals(mode, Optional.of(2))) {
-            System.out.println("Starting 2 player game");
+            System.out.println("Starting 2 player game...");
             player2 = new Human("player2");
             twoPlayer(p1, (Human) player2);
             player = player2;

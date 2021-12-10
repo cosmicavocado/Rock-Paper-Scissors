@@ -48,5 +48,3 @@ A simple Java rock paper scissors game.
 10. Print game result
 11. Store game result in game history
 
-
-## Design

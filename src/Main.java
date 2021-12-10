@@ -11,6 +11,6 @@ public class Main {
         game.setMode(choice);
 
         // Create Game of Desired Game Mode
-        Object player2 = game.createGame(choice, player1);
+        game.createGame(choice, player1);
     }
 }
